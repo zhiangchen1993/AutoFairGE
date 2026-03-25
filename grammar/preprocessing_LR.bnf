@@ -1,0 +1,12 @@
+<pipeline> ::= {"'data_preprocessing'": <data_preprocessing>, "'model'": <model>}
+
+<data_preprocessing>::= {"'encoder'": <encoder>, "'feature_selectors'": <feature_selectors>, "'scalers'": <scalers>,
+"'samplers'": <samplers>, "'order'": <order>}
+
+<encoder> ::= "'OneHotEncoder'" | "'LabelEncoder'" | "'OrdinalEncoder'" | "'TargetEncoder'"
+<feature_selectors> ::= "'SelectKBest'" | None
+<scalers> ::= "'MaxAbsScaler'" | "'MinMaxScaler'" | "'Normalizer'" | None
+<samplers> ::= "'RandomUnderSampler'" | "'RandomOverSampler'" | None
+<order> ::= "'samp_scale_sel'" | "'samp_sel_scale'" | "'scale_samp_sel'" | "'scale_sel_samp'" | "'sel_samp_scale'" | "'sel_scale_samp'"
+
+<model> ::= LogisticRegression(random_state=0)

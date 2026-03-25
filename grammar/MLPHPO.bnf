@@ -1,0 +1,8 @@
+<MLP> ::= MLPClassifier(hidden_layer_sizes=<MLP_hidden_layer_sizes>, alpha=<MLP_alpha>, activation=<MLP_activation>,
+solver=<MLP_solver>, learning_rate=<MLP_learning_rate>, random_state=0)
+<MLP_hidden_layer_sizes> ::= (<MLP_layer>,) | (<MLP_layer>, <MLP_layer>) | (<MLP_layer>, <MLP_layer>, <MLP_layer>) | (<MLP_layer>, <MLP_layer>, <MLP_layer>, <MLP_layer>)
+<MLP_layer> ::= 2 | 4 | 8 | 16 | 32 | 64
+<MLP_alpha> ::= 1e-5 | 1e-4 | 1e-3 | 1e-2 | 1e-1
+<MLP_activation> ::= "'identity'" | "'logistic'" | "'tanh'" | "'relu'"
+<MLP_solver> ::= "'lbfgs'" | "'sgd'" | "'adam'"
+<MLP_learning_rate> ::= "'constant'" | "'invscaling'" | "'adaptive'"

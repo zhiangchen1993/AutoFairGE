@@ -1,0 +1,41 @@
+<pipeline> ::= {"'data_preprocessing'": <data_preprocessing>, "'model'": <model>}
+
+<data_preprocessing>::= {"'encoder'": <encoder>, "'feature_selectors'": <feature_selectors>, "'scalers'": <scalers>,
+"'samplers'": <samplers>, "'order'": <order>}
+
+<encoder> ::= "'OneHotEncoder'" | "'LabelEncoder'" | "'OrdinalEncoder'" | "'TargetEncoder'"
+<feature_selectors> ::= "'SelectKBest'" | None
+<scalers> ::= "'MaxAbsScaler'" | "'MinMaxScaler'" | "'Normalizer'" | None
+<samplers> ::= "'RandomUnderSampler'" | "'RandomOverSampler'" | None
+<order> ::= "'samp_scale_sel'" | "'samp_sel_scale'" | "'scale_samp_sel'" | "'scale_sel_samp'" | "'sel_samp_scale'" | "'sel_scale_samp'"
+
+<model> ::= <LR> | <DT> | <KNN>
+
+<LR> ::= LogisticRegression(solver=<LR_solver>, max_iter=<LR_max_iter>, C=<LR_C>, class_weight=<class_weight>, random_state=0)
+<LR_solver> ::= "'lbfgs'", penalty=<LR_l2_None> | "'liblinear'", penalty=<LR_l1_l2> | "'newton-cg'", penalty=<LR_l2_None> |
+ "'newton-cholesky'", penalty=<LR_l2_None> | "'sag'", penalty=<LR_l2_None> | "'saga'", penalty=<LR_all>
+<LR_l2_None> ::= "'l2'" | None
+<LR_l1_l2> ::= "'l1'" | "'l2'"
+<LR_all> ::= "'elasticnet'", l1_ratio=<LR_l1_ratio> |"'l1'" | "'l2'"
+<LR_l1_ratio> ::= 0 | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1.0
+<LR_max_iter> ::= 50 | 100 | 150 | 200 | 250 | 300
+<LR_C> ::= 1e-2 | 1e-1 | 1 | 1e1 | 1e2 | 1e3
+
+<DT> ::= DecisionTreeClassifier(criterion=<DT_criterion>, max_depth=<DT_max_depth>,
+min_samples_leaf=<DT_min_samples_leaf>, min_samples_split=<DT_min_samples_split>, max_leaf_nodes=<DT_max_leaf_nodes>,
+max_features=<DT_max_features>, class_weight=<class_weight>, random_state=0)
+<DT_criterion> ::= "'gini'" | "'entropy'" | "'log_loss'"
+<DT_max_depth> ::= None | GE_BETWEEN:(1-40)
+<DT_min_samples_leaf> ::= GE_BETWEEN:(1-20)
+<DT_min_samples_split> ::= GE_BETWEEN:(2-40)
+<DT_max_features> ::= None | "'sqrt'" | "'log2'" | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1.0
+<DT_max_leaf_nodes> ::= None | 10 | 50 | 100 | 150 | 200 | 300 | 500 | 1000
+
+<KNN> ::= KNeighborsClassifier(n_neighbors=<KNN_n_neighbors>, weights=<KNN_weights>)
+<KNN_weights> ::= "'uniform'" | "'distance'"
+<KNN_n_neighbors> ::= GE_BETWEEN:(3-100)
+
+<class_weight> ::= None | "'balanced'" | {0: 0.05, 1: 0.95} | {0: 0.1, 1: 0.9} | {0: 0.15, 1: 0.85} | {0: 0.2, 1: 0.8} |
+ {0: 0.25, 1: 0.75} | {0: 0.3, 1: 0.7} | {0: 0.35, 1: 0.65} | {0: 0.4, 1: 0.6} | {0: 0.45, 1: 0.55} | {0: 0.5, 1: 0.5} |
+ {0: 0.55, 1: 0.45} | {0: 0.6, 1: 0.4} | {0: 0.65, 1: 0.35} | {0: 0.7, 1: 0.3} | {0: 0.75, 1: 0.25} | {0: 0.8, 1: 0.2} |
+ {0: 0.85, 1: 0.15} | {0: 0.9, 1: 0.1} | {0: 0.95, 1: 0.05}
