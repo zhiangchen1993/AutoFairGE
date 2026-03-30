@@ -20,7 +20,7 @@ max_features=<DT_max_features>, class_weight=<class_weight>, random_state=0)
 <DT_max_features> ::= None | "'sqrt'" | "'log2'" | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1.0
 <DT_max_leaf_nodes> ::= None | 10 | 50 | 100 | 150 | 200 | 300 | 500 | 1000
 
-<SVC> ::= SVC(C=<SVC_C>, kernel=<SVC_kernel>, gamma=<SVC_gamma>, class_weight=<class_weight>, max_iter=1000, random_state=0)
+<SVC> ::= SVC(C=<SVC_C>, kernel=<SVC_kernel>, gamma=<SVC_gamma>, class_weight=<class_weight>, random_state=0)
 <SVC_kernel> ::= "'linear'" | "'rbf'" | "'sigmoid'" | "'poly'"
 <SVC_C> ::= 1e-2 | 1e-1 | 1 | 1e1 | 1e2 | 1e3
 <SVC_gamma> ::= "'scale'" | "'auto'" | 1e-2 | 1e-1 | 1 | 1e1 | 1e2
