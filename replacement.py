@@ -118,7 +118,7 @@ def nsga2_lim_replacement(new_pop, old_pop):
             if j < limit:
                 group[j] = ind
 
-    # 提取最终结果
+    # Extract final results
     final_available = [ind for group in fitness_groups.values() for ind in group]
 
     # Compute the pareto fronts and crowding distance

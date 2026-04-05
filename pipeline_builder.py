@@ -68,7 +68,7 @@ class DataPreprocessor:
                 self._encoder_transformer = None
                 return X.copy()
 
-            # LabelEncoder: 对每列单独处理
+            # LabelEncoder: handle each column separately
             if isinstance(self.encoder, LabelEncoder):
                 X_encoded = X.copy()
                 self._label_encoders = {}
@@ -77,7 +77,7 @@ class DataPreprocessor:
                     X_encoded[col] = self._label_encoders[col].fit_transform(X_encoded[col])
                 return X_encoded
 
-            # 其他 encoder: 使用 ColumnTransformer
+            # Other encoders: use ColumnTransformer
             self._encoder_transformer = ColumnTransformer(
                 transformers=[('cat', self.encoder, self._cat_cols)],
                 remainder='passthrough',
@@ -94,12 +94,12 @@ class DataPreprocessor:
                 X_encoded = X.copy()
                 for col in self._cat_cols:
                     le = self._label_encoders[col]
-                    # 处理未知类别：映射为 -1
+                    # Handle unknown categories: map to -1
                     mapping = {v: i for i, v in enumerate(le.classes_)}
                     X_encoded[col] = X_encoded[col].map(lambda x: mapping.get(x, -1))
                 return X_encoded
 
-            # 其他 encoder
+            # Other encoders
             encoded = self._encoder_transformer.transform(X)
             return pd.DataFrame(encoded, columns=self._encoder_transformer.get_feature_names_out(), index=X.index)
 
@@ -127,7 +127,7 @@ class DataPreprocessor:
 
         cols = [c for c in X_train.columns if c != self.protected_attribute]
 
-        # 设置 k 值：特征数 > 10 则 k=10，否则 k=特征数-1
+        # Set k: if num features > 10 then k=10, otherwise k=num_features-1
         n_features = len(cols)
         k = 10 if n_features > 10 else max(1, n_features - 1)
         self.feature_selector.set_params(k=k)
@@ -143,7 +143,7 @@ class DataPreprocessor:
         """
         Returns: X_train, y_train, X_test, y_test
         """
-        # 检查 protected_attribute 是否存在
+        # Check if protected_attribute exists
         if self.protected_attribute and self.protected_attribute not in train_data.columns:
             raise ValueError(f"protected_attribute '{self.protected_attribute}' not found in data columns: {list(train_data.columns)}")
 
@@ -161,7 +161,7 @@ class DataPreprocessor:
             if step in self._step_funcs:
                 X_train, y_train, X_test = self._step_funcs[step](X_train, y_train, X_test)
 
-        # 限制小数位数（保留4位）
+        # Round to 4 decimal places
         X_train = X_train.round(4)
         X_test = X_test.round(4)
 
