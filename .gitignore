@@ -6,7 +6,6 @@ __pycache__/
 
 # IDE
 .idea/
-.claude/
 
 # macOS
 .DS_Store
