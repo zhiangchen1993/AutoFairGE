@@ -91,10 +91,10 @@ class Fitness():
             y_pred_val = model.predict(x_val)
 
             # ACC
-            accuracy_val = round(float(accuracy_score(y_val, y_pred_val)), 3)
+            accuracy_val = accuracy_score(y_val, y_pred_val)
 
             # Fairness - AOD calculation using vectorized method
-            average_odds_difference = round(float(compute_aod_vectorized(x_val, y_val, y_pred_val)), 3)
+            average_odds_difference = compute_aod_vectorized(x_val, y_val, y_pred_val)
 
             return [accuracy_val, average_odds_difference]
 
