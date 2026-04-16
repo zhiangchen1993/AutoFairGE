@@ -1,9 +1,9 @@
 # Name of the experiment
-Experiment_name = "Census_race_acc_aod_CASH"
+Experiment_name = "Compas_race_acc_aod_CASH"
 
-Dataset_train = 'data/Census_race/Census_race_train.csv'
-Dataset_val = 'data/Census_race/Census_race_val.csv'
-Dataset_test = 'data/Census_race/Census_race_test.csv'
+Dataset_train = 'data/Compas_race/Compas_race_train.csv'
+Dataset_val = 'data/Compas_race/Compas_race_val.csv'
+Dataset_test = 'data/Compas_race/Compas_race_test.csv'
 
 # Basic parameters
 Random_seed = 0

@@ -65,9 +65,9 @@ Or customize via command-line arguments:
 
 ```bash
 python AutoFairGE.py \
-    --Dataset_train data/Census_race/Census_train_race.csv \
-    --Dataset_val data/Census_race/Census_val_race.csv \
-    --Dataset_test data/Census_race/Census_test_race.csv \
+    --Dataset_train data/Compas_race/compas_train_race.csv \
+    --Dataset_val data/Compas_race/compas_val_race.csv \
+    --Dataset_test data/Compas_race/compas_test_race.csv \
     --Random_seed 0 \
     --Experiment_name my_experiment \
     --Fitness_file fitness.fitness_acc_aod \
